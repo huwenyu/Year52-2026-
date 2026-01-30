@@ -1,8 +1,10 @@
 import { useMemo } from "react"
 import { toPng, toSvg } from "html-to-image"
+import { Moon, Sun } from "lucide-react"
 import YearHeader from "@/components/YearHeader"
 import WeekCard from "@/components/WeekCard"
 import { useNow } from "@/hooks/useNow"
+import { useTheme } from "@/hooks/useTheme"
 import { useWeekUiStore } from "@/stores/useWeekUiStore"
 import { getWeekProgress, getYearWeeksJan1 } from "@/utils/weeks"
 
@@ -41,16 +43,30 @@ export default function Home() {
         </div>
 
         <div className="mt-8 flex flex-col gap-3 border-t border-border pt-5">
-          <div className="flex items-center justify-end gap-3">
+          <div className="flex items-center justify-between gap-3">
+            <ThemeToggle />
             <div className="flex items-center gap-2">
               <ExportButtons year={YEAR} />
               <CopyLinkButton year={YEAR} />
             </div>
           </div>
-
         </div>
       </div>
     </div>
+  )
+}
+
+function ThemeToggle() {
+  const { isDark, toggleTheme } = useTheme()
+  return (
+    <button
+      type="button"
+      className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-foreground transition-colors hover:bg-muted"
+      onClick={toggleTheme}
+      aria-label="Toggle theme"
+    >
+      {isDark ? <Moon size={14} /> : <Sun size={14} />}
+    </button>
   )
 }
 
