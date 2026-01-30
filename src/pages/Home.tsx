@@ -103,28 +103,24 @@ function ExportButtons({ year }: { year: number }) {
     <>
       <button
         type="button"
-        className="rounded-lg border border-foreground px-3 py-1.5 text-xs font-extrabold tracking-[0.12em] text-foreground transition-colors hover:bg-foreground hover:text-background"
+        className="rounded-lg border border-border px-3 py-1.5 text-xs font-extrabold tracking-[0.12em] text-foreground transition-colors hover:bg-muted"
         onClick={async () => {
           const node = document.getElementById("capture-root")
           if (!node) return
           const blob = await toSvgBlob(node)
           downloadBlob(`year52-${year}.svg`, blob)
         }}
-      >
-        导出 SVG
-      </button>
+      >导出 SVG</button>
       <button
         type="button"
-        className="rounded-lg border border-foreground px-3 py-1.5 text-xs font-extrabold tracking-[0.12em] text-foreground transition-colors hover:bg-foreground hover:text-background"
+        className="rounded-lg border border-border px-3 py-1.5 text-xs font-extrabold tracking-[0.12em] text-foreground transition-colors hover:bg-muted"
         onClick={async () => {
           const node = document.getElementById("capture-root")
           if (!node) return
           const blob = await toPngBlob(node)
           downloadBlob(`year52-${year}.png`, blob)
         }}
-      >
-        导出 PNG
-      </button>
+      >导出 PNG</button>
     </>
   )
 }
@@ -141,8 +137,6 @@ function CopyLinkButton({ year }: { year: number }) {
         window.history.replaceState(null, "", url.toString())
         await navigator.clipboard.writeText(url.toString())
       }}
-    >
-      复制链接
-    </button>
+    >复制链接</button>
   )
 }
